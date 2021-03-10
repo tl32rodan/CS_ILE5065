@@ -1,7 +1,6 @@
-# Course: Introduction to Pattern Recognition
+# Course: Pattern Recognition
 ## Instructor: [Prof. Yen-Yu Lin](https://www.cs.nctu.edu.tw/members/detail/lin)
-## Introduction
-An introduction to pattern recognition
+
 ## Office Hours
 Thursday 2:00 pm ~ 4:00 pm at EC118
 
