@@ -1,19 +1,38 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# ## HW3: Decision Tree and Random Forest
-# In hw3, you need to implement decision tree and random forest by using only numpy, then train your implemented model by the provided dataset and test the performance with testing data
+# ## HW3: Decision Tree, Random Forest, and Adaboost
+# In hw3, you need to implement decision tree, random forest and adaboost by using only numpy, then train your implemented model by the provided dataset and test the performance with testing data
 # 
 # Please note that only **NUMPY** can be used to implement your model, you will get no points by simply calling sklearn.tree.DecisionTreeClassifier
+
+# In[1]:
+
+
+get_ipython().system('pip install sklearn')
+
+
+# ## Load data
+
+# In[2]:
+
 
 import numpy as np
 import pandas as pd
 from sklearn.datasets import load_breast_cancer
+from sklearn.metrics import accuracy_score
+
+
+# In[3]:
 
 
 data = load_breast_cancer()
 feature_names = data['feature_names']
 print(feature_names)
+
+
+# In[4]:
+
 
 x_train = pd.read_csv("x_train.csv")
 y_train = pd.read_csv("y_train.csv")
@@ -22,7 +41,9 @@ y_test = pd.read_csv("y_test.csv")
 
 
 # ## Question 1
-# Gini Index or Entropy is often used for measuring the “best” splitting of the data. Please compute the Entropy and Gini Index of provided data. Please use the formula from [page 7 of hw3 slides](https://docs.google.com/presentation/d/1ish3jEr_6be0FK4kgOZa12nYAyJFh0P2LCNsNPOCiXo/edit#slide=id.g7703d1636d_0_21)
+# Gini Index or Entropy is often used for measuring the “best” splitting of the data. Please compute the Entropy and Gini Index of provided data. Please use the formula from the course sludes on E3
+
+# In[5]:
 
 
 def gini(sequence):
@@ -32,13 +53,23 @@ def entropy(sequence):
     return None
 
 
+# In[14]:
+
+
 # 1 = class 1,
 # 2 = class 2
 data = np.array([1,2,1,1,1,1,2,2,1,1,2])
 
 
+# In[15]:
+
 
 print("Gini of data is ", gini(data))
+
+
+# In[16]:
+
+
 print("Entropy of data is ", entropy(data))
 
 
@@ -48,17 +79,22 @@ print("Entropy of data is ", entropy(data))
 # 2. **Max_depth**: The maximum depth of the tree. If Max_depth=None, then nodes are expanded until all leaves are pure. Max_depth=1 equals to split data once
 # 
 
-
+# In[3]:
 
 
 class DecisionTree():
     def __init__(self, criterion='gini', max_depth=None):
+        return None
+    
+    def fit(self, X, y):
         return None
 
 
 # ### Question 2.1
 # Using Criterion=‘gini’, showing the accuracy score of test data by Max_depth=3 and Max_depth=10, respectively.
 # 
+
+# In[8]:
 
 
 clf_depth3 = DecisionTree(criterion='gini', max_depth=3)
@@ -68,6 +104,8 @@ clf_depth10 = DecisionTree(criterion='gini', max_depth=10)
 # ### Question 2.2
 # Using Max_depth=3, showing the accuracy score of test data by Criterion=‘gini’ and Criterion=’entropy’, respectively.
 # 
+
+# In[9]:
 
 
 clf_gini = DecisionTree(criterion='gini', max_depth=3)
@@ -86,16 +124,15 @@ clf_entropy = DecisionTree(criterion='entropy', max_depth=3)
 # 
 # ![image](https://i2.wp.com/sefiks.com/wp-content/uploads/2020/04/c45-fi-results.jpg?w=481&ssl=1)
 
-
 # ## Question 4
-# implement the Random Forest algorithm by using the CART you just implemented from question 2. You should implement two arguments for the Random Forest.
+# implement the Random Forest algorithm by using the CART you just implemented from question 2. You should implement three arguments for the Random Forest.
 # 
 # 1. **N_estimators**: The number of trees in the forest. 
 # 2. **Max_features**: The number of random select features to consider when looking for the best split
 # 3. **Bootstrap**: Whether bootstrap samples are used when building tree
 # 
 
-
+# In[11]:
 
 
 class RandomForest():
@@ -107,9 +144,14 @@ class RandomForest():
 # Using Criterion=‘gini’, Max_depth=None, Max_features=sqrt(n_features), showing the accuracy score of test data by n_estimators=10 and n_estimators=100, respectively.
 # 
 
+# In[12]:
+
 
 clf_10tree = RandomForest(n_estimators=10, max_features=np.sqrt(x_train.shape[1]))
 clf_100tree = RandomForest(n_estimators=100, max_features=np.sqrt(x_train.shape[1]))
+
+
+# In[ ]:
 
 
 
@@ -119,12 +161,16 @@ clf_100tree = RandomForest(n_estimators=100, max_features=np.sqrt(x_train.shape[
 # Using Criterion=‘gini’, Max_depth=None, N_estimators=10, showing the accuracy score of test data by Max_features=sqrt(n_features) and Max_features=n_features, respectively.
 # 
 
+# In[13]:
 
-clf_all_features = RandomForest(n_estimators=10, max_features=np.sqrt(x_train.shape[1]))
-clf_random_features = RandomForest(n_estimators=10, max_features=x_train.shape[1])
+
+clf_random_features = RandomForest(n_estimators=10, max_features=np.sqrt(x_train.shape[1]))
+clf_all_features = RandomForest(n_estimators=10, max_features=x_train.shape[1])
 
 
 # - Note: Use majority votes to get the final prediction, you may get slightly different results when re-building the random forest model
+
+# In[ ]:
 
 
 
@@ -132,7 +178,3 @@ clf_random_features = RandomForest(n_estimators=10, max_features=x_train.shape[1
 
 # ## Supplementary
 # If you have trouble to implement this homework, TA strongly recommend watching [this video](https://www.youtube.com/watch?v=LDRbO9a6XPU), which explains Decision Tree model clearly. But don't copy code from any resources, try to finish this homework by yourself! 
-
-
-
-
