@@ -4,9 +4,8 @@
 
 In this coding assignment,  you need to implement the deep neural network by any deep learning framework, e.g. Pytorch, TensorFlow, or Keras, then train the DNN model by the Cifar-10 dataset. 
 
-** Download dataset [HERE](https://drive.google.com/drive/u/1/folders/1sHh6NvuKX6RB5OytLwf4kaqfQ9svJNDQ). **
-Please note that you should only train and evaluate your model on the provided dataset.
-DO NOT download the data from other resources.
+### Dataset
+Download dataset [HERE](https://drive.google.com/drive/u/1/folders/1sHh6NvuKX6RB5OytLwf4kaqfQ9svJNDQ). Please note that you should only train and evaluate your model on the provided dataset. **DO NOT** download the data from other resources.
 
 Find the questions at [this document](https://docs.google.com/document/d/1MWIjS_ubZcoy2ca46Yq65DN6X4F4PJDcPh3dVSltLNA/edit?usp=sharing)
 
